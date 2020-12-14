@@ -254,9 +254,93 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Process
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
       Process
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#voxel-size" class="md-nav__link">
+    Voxel size
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mesh-model-of-all-bridges" class="md-nav__link">
+    Mesh model of all bridges
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#program-of-requirements" class="md-nav__link">
+    Program of requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-of-connections" class="md-nav__link">
+    Matrix of connections
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-envelope" class="md-nav__link">
+    Building envelope
+  </a>
+  
+    <nav class="md-nav" aria-label="Building envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sun-analysis" class="md-nav__link">
+    Sun analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shadow-analysis" class="md-nav__link">
+    Shadow analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sky-view-factor-analysis" class="md-nav__link">
+    Sky view factor analysis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -539,6 +623,76 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#voxel-size" class="md-nav__link">
+    Voxel size
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mesh-model-of-all-bridges" class="md-nav__link">
+    Mesh model of all bridges
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#program-of-requirements" class="md-nav__link">
+    Program of requirements
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-of-connections" class="md-nav__link">
+    Matrix of connections
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#building-envelope" class="md-nav__link">
+    Building envelope
+  </a>
+  
+    <nav class="md-nav" aria-label="Building envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sun-analysis" class="md-nav__link">
+    Sun analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shadow-analysis" class="md-nav__link">
+    Shadow analysis
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sky-view-factor-analysis" class="md-nav__link">
+    Sky view factor analysis
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -551,11 +705,18 @@
                 
                 
                 <h1 id="configuring">Configuring</h1>
-<h1 id="voxel-size">Voxel Size</h1>
-<blockquote>
-<p>Here you should include the process and product of your 2nd activity: <strong>Configuring</strong></p>
-</blockquote>
-<table><thead><tr class="header"><th>Title</th><th>Configuring (process): Circulation Manifold (product)</th></tr></thead><tbody><tr class="odd"><td>Objective</td><td>Formulate a spatial (topological) concept, design a modular circulation manifold on a pixel/voxel grid.</td></tr><tr class="even"><td>Procedure</td><td><p>Construct a voxelated model of the site with a maximum height of 100 meters. Orient the voxel grid to a global coordinate system (e.g. geographical North-East-West-South). Size the voxels carefully based on the modular height of steps and the length of stair flights and ramps so that they fit in X/Y directions into multiple pixels. Choose the Z size of voxels according to step risers and choose the same size for X and Y as a whole multiple of step threads.</p><p>There are three types of spaces in terms of pedestrian movement in buildings, metaphorically speaking, spaces to <strong>walk</strong> through (e.g. corridors, ramps, and stairs), spaces to <strong>stand</strong> on (e.g. platforms connecting doors to corridors and stairs) and spaces to <strong>sit</strong> on (functional rooms/spaces). Construct a simplified mesh model of all bridges (corridors, ramps, stairs) connected by standing platforms in a modular grid of voxels/pixels. Take into account the free-height necessary for all spaces and pack them into the bounding volume of the building. For every functional space, leave a single pixel as a standing platform and colour it with the corresponding colour.</p></td></tr></tbody></table>
+<h2 id="voxel-size">Voxel size</h2>
+<h2 id="mesh-model-of-all-bridges">Mesh model of all bridges</h2>
+<p>corridors/elevators etc. </p>
+<h2 id="program-of-requirements">Program of requirements</h2>
+<p>pdf program of requirements of bij products?</p>
+<h2 id="matrix-of-connections">Matrix of connections</h2>
+<p>of bij products? </p>
+<h2 id="building-envelope">Building envelope</h2>
+<p>explain code jupyter notebook and decisions </p>
+<h3 id="sun-analysis">Sun analysis</h3>
+<h3 id="shadow-analysis">Shadow analysis</h3>
+<h3 id="sky-view-factor-analysis">Sky view factor analysis</h3>
                 
               
               
