@@ -58,6 +58,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#shadow-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -328,6 +333,8 @@
   <li class="md-nav__item md-nav__item--active">
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
     
     
     <a href="./" class="md-nav__link md-nav__link--active">
@@ -609,15 +616,66 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>Shadow analysis</h1>
-                
-                
+                <h1 id="shadow-analysis">Shadow analysis</h1>
+<p>After removing the voxels with too little sun access, we have analysed the shadow casting of the new envelope. </p>
+<p>A part of the building envelope would provide shade for the surroundings. Because the building has a high height and is close to other buildings, we have removed the voxels that have a major influence on the shadow on certain parts of the immediate context.</p>
+<p>Just like in the sun analysis, we compute many intersections. This time, however, we are computing them from the sky towards the voxels. In the code, the directions of the sun vectors are opposite to those in the sun analysis.</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># constructing the sun direction from the sun vectors in a numpy array</span>
+<span class="n">sun_dirs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sun_vectors</span><span class="p">)</span>
+
+<span class="c1"># exract the centroids of the envelope voxels</span>
+<span class="n">vox_cens</span> <span class="o">=</span> <span class="n">full_lattice</span><span class="o">.</span><span class="n">centroids</span>
+
+<span class="n">ray_dir</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">ray_src</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">v_cen</span> <span class="ow">in</span> <span class="n">vox_cens</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">s_dir</span> <span class="ow">in</span> <span class="n">sun_dirs</span><span class="p">:</span>
+        <span class="n">ray_dir</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_dir</span><span class="p">)</span>
+        <span class="n">ray_src</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v_cen</span><span class="p">)</span>
+
+<span class="c1"># converting the list of directions and sources to numpy array</span>
+<span class="n">ray_dir</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ray_dir</span><span class="p">)</span>
+<span class="n">ray_src</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ray_src</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Because we want to keep the park behind the building, we also think it is important that this remains a nice green place. That is why we have taken this into account in our analysis. we have changed the immediate context In Rhino and placed a building with a height of 1.75 meters (human height) on the park. You can clearly see the difference in the colors, and so in the shadow casting of the envelope. </p>
+<p><strong><em>Without park</em></strong></p>
+<p><img alt="Title" src="../img/shadow_no_park.jpg" /></p>
+<p><strong><em>With park</em></strong></p>
+<p><img alt="Title" src="../img/shadow1.jpg" /></p>
+<p>We have removed the voxels that have over 45 percent of intersections by generating an envelope based on the selection. </p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># 7.2. Generating an envelope based on the selection</span>
+<span class="n">lower_bound</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">upper_bound</span> <span class="o">=</span> <span class="mf">0.45</span>
+<span class="n">lower_condition</span> <span class="o">=</span> <span class="n">shadow_casting_lattice</span> <span class="o">&gt;</span> <span class="n">lower_bound</span>
+<span class="n">upper_condition</span> <span class="o">=</span> <span class="n">shadow_casting_lattice</span> <span class="o">&lt;</span> <span class="n">upper_bound</span>
+<span class="n">new_avail_lattice</span> <span class="o">=</span> <span class="n">lower_condition</span> <span class="o">*</span> <span class="n">upper_condition</span>
+</code></pre></div>
+
+<p>We continue the next analysis with the newly created envelope.</p>
+<p><strong><em>New envelope</em></strong></p>
+<p><img alt="Title" src="../img/shadow2.jpg" /></p>
                 
               
               

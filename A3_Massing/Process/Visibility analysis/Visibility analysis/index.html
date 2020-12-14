@@ -58,6 +58,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#visibility-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -341,6 +346,8 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
     
     <a href="./" class="md-nav__link md-nav__link--active">
       Visibility analysis
@@ -609,15 +616,51 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>Visibility analysis</h1>
-                
-                
+                <h1 id="visibility-analysis">Visibility analysis</h1>
+<p>One of our starting points is to create a building that makes different connections. By this we mean connections between the various surrounding neighborhoods, between the greenery and connections inside of the building. The building should therefore not serve as a wall, but more as a passage. That is why we think it is important that for people passing by, there is a good view of the sky and the surroundings. 
+For this, we have calculated the sky view factor and, just like in the previous analysis, removed the unnecessary voxels.</p>
+<p>Other than in the sun and shadow analysis we needed to compute the sky vectors. </p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Compute the sky vectors</span>
+<span class="n">sphere_mesh</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">creation</span><span class="o">.</span><span class="n">icosphere</span><span class="p">(</span><span class="n">subdivisions</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">sphere_vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">sphere_mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
+
+<span class="n">sky_vectors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">sphere_vectors</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mf">0.0</span><span class="p">:</span>
+        <span class="n">sky_vectors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+<span class="n">sky_vectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sky_vectors</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">sky_vectors</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Then we have computed the intersections between the sky rays and the context. The context exists only of the street around the building. This is because we only need to check if people walking by can not see the sky because of the building we are making. The other context can be left out.</p>
+<p><img alt="Title" src="../img/street.png" /></p>
+<p>We have done the calculation on the envelope on the envelope that remained after the sun and shadow analysis. </p>
+<p><strong><em>Visibility analysis</em></strong></p>
+<p><img alt="title" src="../img/svf1.jpg" /></p>
+<p><strong><em>Final envelope</em></strong></p>
+<p><img alt="title" src="../img/svf2.jpg" /></p>
                 
               
               
