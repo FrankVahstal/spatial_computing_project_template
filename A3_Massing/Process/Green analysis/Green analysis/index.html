@@ -752,6 +752,16 @@
 <p><img alt="title" src="../../../../img/Flowchart_green_acces.png" /></p>
 <h3 id="park">Park</h3>
 <p>The first public green space we have defined is the small park betweenn the Almondestraat and the Schoterbosstraat. As described above in the flowchart we did this by extracting a representing voxel from the distance field matrix. Below you can see the visualization. </p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># select the corresponding row in the matrix</span>
+<span class="n">ent_2_dist</span> <span class="o">=</span> <span class="n">dist_mtrx</span><span class="p">[</span><span class="mi">422</span><span class="p">]</span>
+
+<span class="c1"># find the maximum valid value</span>
+<span class="n">max_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">ent_2_dist</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+<span class="c1"># set the infinities to one more than the maximum valid values</span>
+<span class="n">ent_2_dist</span><span class="p">[</span><span class="n">ent_2_dist</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_valid</span> <span class="o">+</span> <span class="mi">1</span>
+</code></pre></div>
+
 <p><img alt="title" src="../../../../img/Park.png" /></p>
 <h3 id="raingarden">Raingarden</h3>
 <p>The same process we repeated for the second green space which is the Raingarden on the south east side of the envelope.</p>
