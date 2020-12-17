@@ -484,6 +484,19 @@
     4   The growing process
   </a>
   
+    <nav class="md-nav" aria-label="4   The growing process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#to-do_3" class="md-nav__link">
+    To Do
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -850,6 +863,19 @@
     4   The growing process
   </a>
   
+    <nav class="md-nav" aria-label="4   The growing process">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#to-do_3" class="md-nav__link">
+    To Do
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
     </ul>
@@ -952,6 +978,104 @@
 <li>Add multiple agents for housing units to optimize their connection with green areas</li>
 </ul>
 <h3 id="4-the-growing-process">4   The growing process</h3>
+<p>During this process the agents will grow one voxel at a time for a certain amount of frames. This happens with the use of dynamic agents and a for loop, checking all the criteria and choosing a suitable neighbour.  </p>
+<p>A the beginning of the for loop, criteria from the matrix are put in a variable that can be used in the code. </p>
+<p><strong>Code</strong></p>
+<div class="codehilite"><pre><span></span><code>    <span class="k">for</span> <span class="n">a_id</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">agn_num</span><span class="p">):</span>
+        <span class="c1"># retrieve the list of the locations of the current agent</span>
+        <span class="n">a_locs</span> <span class="o">=</span> <span class="n">agn_locs</span><span class="p">[</span><span class="n">a_id</span><span class="p">]</span>
+        <span class="n">a_expandz</span> <span class="o">=</span> <span class="n">agn_expandz</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">a_id</span><span class="p">)]</span>
+        <span class="n">a_vox_req</span> <span class="o">=</span> <span class="n">agn_vox_req</span><span class="p">[</span><span class="n">a_id</span><span class="p">]</span>
+        <span class="n">a_vox_count</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">a_locs</span><span class="p">)</span>
+
+        <span class="c1"># initialize the list of free neighbours</span>
+        <span class="n">free_neighs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">free_neigh_weights</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div>
+
+<p>In the code below the z-neighbours and the xy-neighbours of each agent are checked if they are available and then they are compared with the criteria of that specific agent/function whether or not it prefers to grow in all directions or just horizontally. The script Shervin helped us write makes sure that if an agent want to grow horizontally, but there is no way for it to grow anymore in that direction, it still has the opportunity to grow vertically to meet the required area. This is based on the variable criteria a_expandz.</p>
+<p><strong>Code</strong></p>
+<div class="codehilite"><pre><span></span><code>        <span class="k">for</span> <span class="n">loc</span> <span class="ow">in</span> <span class="n">a_locs</span><span class="p">:</span>
+
+            <span class="c1"># retrieve the list of neighbours of the agent based on the stencil</span>
+            <span class="n">z_neighs</span> <span class="o">=</span> <span class="n">avail_lattice</span><span class="o">.</span><span class="n">find_neighbours_masked</span><span class="p">(</span><span class="n">s_z</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">loc</span><span class="p">)</span>
+
+            <span class="c1"># retrieve the list of neighbours of the agent based on the stencil</span>
+            <span class="n">xy_neighs</span> <span class="o">=</span> <span class="n">avail_lattice</span><span class="o">.</span><span class="n">find_neighbours_masked</span><span class="p">(</span><span class="n">s_xy</span><span class="p">,</span> <span class="n">loc</span> <span class="o">=</span> <span class="n">loc</span><span class="p">)</span>
+
+            <span class="n">neighs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">z_neighs</span><span class="p">,</span><span class="n">xy_neighs</span><span class="p">])</span>
+            <span class="n">neigh_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">z_neighs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">a_expandz</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="n">xy_neighs</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)])</span>
+
+            <span class="c1"># for each neighbour ... </span>
+            <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">nw</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">neighs</span><span class="p">,</span> <span class="n">neigh_weights</span><span class="p">):</span>
+                <span class="c1"># compute 3D index of neighbour</span>
+                <span class="n">neigh_3d_id</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">avail_lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+                <span class="c1"># if the neighbour is available... </span>
+                <span class="k">if</span> <span class="n">avail_lattice</span><span class="p">[</span><span class="n">neigh_3d_id</span><span class="p">]:</span>
+                    <span class="c1"># add the neighbour to the list of free neighbours</span>
+                    <span class="n">free_neighs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neigh_3d_id</span><span class="p">)</span>
+                    <span class="n">free_neigh_weights</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nw</span><span class="p">)</span>
+</code></pre></div>
+
+<p>In this part of the code there is checked if there are any free neighbours and what the value of those neighbours are. It also checks the preferences of the agents. And based of those 2 values it choses the neighbour with the highest value. </p>
+<p><strong>Code</strong></p>
+<div class="codehilite"><pre><span></span><code>        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">free_neighs</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>   
+            <span class="c1"># convert free neighbours to a numpy array</span>
+            <span class="n">free_neighs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">free_neighs</span><span class="p">)</span>
+            <span class="c1"># retrieving the entrance access value of the free neighbours</span>
+            <span class="n">neigh_vals</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="c1"># retrieve agent preferences</span>
+            <span class="n">a_pref</span> <span class="o">=</span> <span class="n">agn_prefs</span><span class="p">[</span><span class="n">a_id</span><span class="p">]</span>
+            <span class="c1"># Neighbour Evaluation Loop</span>
+            <span class="k">for</span> <span class="n">neigh</span><span class="p">,</span> <span class="n">neigh_w</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">free_neighs</span><span class="p">,</span><span class="n">free_neigh_weights</span><span class="p">):</span>
+                <span class="n">neigh_value</span> <span class="o">=</span> <span class="n">neigh_w</span>
+                <span class="c1"># for every lattice in the environment informations</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">info_lattice</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">env_info</span><span class="p">):</span>
+                    <span class="c1"># Here we utilise Fuzzy Logics to be able to compare different layers </span>
+                    <span class="c1"># of environmental information and evaluate the voxel for the agent. </span>
+                    <span class="c1"># This method is introduced, and generalised in Pirouz Nourian dissertation: </span>
+                    <span class="c1"># section 5.7.3, pp. 201-208, eq. 57. You can refer to this section for </span>
+                    <span class="c1"># comprehensive mathematical details.</span>
+                    <span class="n">vox_val</span> <span class="o">=</span> <span class="n">info_lattice</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">neigh</span><span class="p">)]</span>
+                    <span class="n">agn_vox_val</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">vox_val</span><span class="p">,</span> <span class="n">a_pref</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+                    <span class="n">neigh_value</span> <span class="o">*=</span> <span class="n">agn_vox_val</span>
+                <span class="c1"># add the neighbour value to the list of values</span>
+                <span class="n">neigh_vals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neigh_value</span><span class="p">)</span>
+
+            <span class="c1"># convert to numpy array</span>
+            <span class="n">neigh_vals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">neigh_vals</span><span class="p">)</span>
+            <span class="c1"># select the neighbour with highest value </span>
+            <span class="n">selected_int</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">neigh_vals</span><span class="p">)</span>
+</code></pre></div>
+
+<p>Finally the best neighbour is chosen, but it will only be added to the list of the agent locations (become part of the total size of that specific function/agent) if the voxel count for that function is lower than the required amount of voxels or total area/volume for that specific function. If it can grow it will be added to that list and then be set unavailable for other agents to occupie that voxel and it will be set occupied for that function. This will translate into the voxel being shown as part of a function in the images below.</p>
+<p><strong>Code</strong></p>
+<div class="codehilite"><pre><span></span><code>        <span class="k">if</span> <span class="n">a_vox_count</span> <span class="o">&lt;</span> <span class="n">a_vox_req</span><span class="p">:</span>
+            <span class="c1"># add the newly selected neighbour location to agent locations</span>
+            <span class="n">agn_locs</span><span class="p">[</span><span class="n">a_id</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">selected_neigh_loc</span><span class="p">)</span>
+            <span class="c1"># set the newly selected neighbour as UNavailable (0) in the availability lattice</span>
+            <span class="n">avail_lattice</span><span class="p">[</span><span class="n">selected_neigh_3d_id</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="c1"># set the newly selected neighbour as OCCUPIED by current agent </span>
+            <span class="c1"># (-1 means not-occupied so a_id)</span>
+            <span class="n">occ_lattice</span><span class="p">[</span><span class="n">selected_neigh_3d_id</span><span class="p">]</span> <span class="o">=</span> <span class="n">a_id</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+</code></pre></div>
+
+<p><img alt="title" src="../../img/ABM1.JPG" />
+<img alt="title" src="../../img/ABM2.JPG" /></p>
+<p>This is the result of the growing process of the agents. However the puzzle is not solved yet, because there are still some problems to be solved here</p>
+<h4 id="to-do_3">To Do</h4>
+<ul>
+<li>Let spaces grow in both x &amp; y direction to prevent long strokes in one direction</li>
+<li>Use interpolation to reach a representation closer to our desired building</li>
+<li>New envelope with green cuts and a central courtyard?</li>
+<li>Add more criteria</li>
+<li>Make certain spaces repel each other (for example noise producing and quit spaces)</li>
+<li>What about the overhang on the north façade? Not a lot of daylight there</li>
+<li>Some inner functions or housing units don’t have access to windows. Perhaps have it generate a courtyard when not a lot of voxels have direct daylight access if needed per function.</li>
+<li>Have the agents negotiate and use this as another criteria to stop the growing process.</li>
+</ul>
                 
               
               
