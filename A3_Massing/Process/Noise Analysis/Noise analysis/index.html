@@ -64,6 +64,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#noise-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -353,10 +358,61 @@
     
     <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
     
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Noise analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
     
     <a href="./" class="md-nav__link md-nav__link--active">
       Noise analysis
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interior-noise" class="md-nav__link">
+    Interior noise
+  </a>
+  
+    <nav class="md-nav" aria-label="Interior noise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#to-do" class="md-nav__link">
+    To do
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exterior-noise" class="md-nav__link">
+    Exterior noise
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -633,15 +689,79 @@
               </div>
             
             
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#interior-noise" class="md-nav__link">
+    Interior noise
+  </a>
+  
+    <nav class="md-nav" aria-label="Interior noise">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#to-do" class="md-nav__link">
+    To do
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exterior-noise" class="md-nav__link">
+    Exterior noise
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
           
           <div class="md-content">
             <article class="md-content__inner md-typeset">
               
                 
                 
-                  <h1>Noise analysis</h1>
-                
-                
+                <h1 id="noise-analysis">Noise analysis</h1>
+<h2 id="interior-noise">Interior noise</h2>
+<p>With interior noise we mean the different amount of noise which could be produced by different functions. This is important in our case beceaus there are several function that allow a very small amount of noise. </p>
+<p><img alt="title" src="../../../../img/Flowchart_interior_noise.png" /></p>
+<p>We have implemented this again in a test case with a very small program. </p>
+<table><thead><tr class="header"><th>space_name</th><th>space_id</th><th>ent_rep</th><th>sun_rep</th><th>lobby_rep</th><th>library_rep</th><th>pub_rep
+
+</th></tr></thead><tbody><tr class="odd"><td>lobby</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0.5
+</th></tr></thead><tbody><tr class="odd"><td>library</td><td>1</td><td>0.5</td><td>1</td><td>0</td><td>0</td><td>1
+</th></tr></thead><tbody><tr class="odd"><td>pub</td><td>2</td><td>0</td><td>0.5</td><td>0.5</td><td>1</td><td>0
+</p></td></tr></tbody></table>
+
+<p><img alt="title" src="../../../../img/W%2B2_mcda_seed_allocation_repel.PNG" /></p>
+<p>As we can see in this visualization the pub does repel the library, which is eventually what we want. </p>
+<h4 id="to-do">To do</h4>
+<p>If we want to use this code, we need to be able to combine it with the same code for attraction. We need to find a way to do this, because a value 0 on the scale of repel is still something totally different than a value 1 on the scale of attraction. </p>
+<h2 id="exterior-noise">Exterior noise</h2>
                 
               
               
