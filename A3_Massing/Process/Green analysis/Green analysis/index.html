@@ -397,19 +397,6 @@
     Roof garden acces
   </a>
   
-    <nav class="md-nav" aria-label="Roof garden acces">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#programcsv" class="md-nav__link">
-    Program.csv
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -745,19 +732,6 @@
     Roof garden acces
   </a>
   
-    <nav class="md-nav" aria-label="Roof garden acces">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#programcsv" class="md-nav__link">
-    Program.csv
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -774,60 +748,31 @@
                 
                 
                 <h1 id="green-analysis">Green Analysis</h1>
-<p>In this analysis we wanted to create some attraction to green spaces in the direct neighborhood of the envelope. The eventual goal is to minimize the graph distance of a voxel which is in need of green space, and the green space its self. To accomplish this we used the notebook offered by Shervin Azadi.</p>
+<p>In this analysis we wanted to create some attraction to green spaces in the direct neighborhood of the envelope. The eventual goal is to minimize the graph distance of a voxel which is in need of green space, and the green space its self. In this flowchart below we explained how we have tried to accomplish this.</p>
+<p><img alt="title" src="../../../../img/Flowchart_green_acces.png" /></p>
 <h3 id="park">Park</h3>
-<p>The first green space we defined is the small park between the Almondestraat and the Schoterbosstraat. We did this by extracting the index number 422, which represents the park, from the distance matrix.</p>
-<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
-<img alt="title" src="../../img/Park.png" />
-=======</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># select the corresponding row in the matrix</span>
-<span class="n">park_dist</span> <span class="o">=</span> <span class="n">dist_mtrx</span><span class="p">[</span><span class="mi">422</span><span class="p">]</span>
-
-<span class="c1"># find the maximum valid value</span>
-<span class="n">max_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">park_dist</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
-
-<span class="c1"># set the infinities to one more than the maximum valid values</span>
-<span class="n">park_dist</span><span class="p">[</span><span class="n">park_dist</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_valid</span> <span class="o">+</span> <span class="mi">1</span>
-</code></pre></div>
-
+<p>The first public green space we have defined is the small park betweenn the Almondestraat and the Schoterbosstraat. As described above in the flowchart we did this by extracting a representing voxel from the distance field matrix. Below you can see the visualization. </p>
 <p><img alt="title" src="../../../../img/Park.png" /></p>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<blockquote>
-<p>f264c65ce4c935ca7e78dd8c645f7afaa24905f9</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
-</blockquote>
 <h3 id="raingarden">Raingarden</h3>
 <p>The same process we repeated for the second green space which is the Raingarden on the south east side of the envelope.</p>
+<p><img alt="title" src="../../../../img/Raingarden.PNG" /></p>
 <h3 id="hofbogen">Hofbogen</h3>
-<p>For the third green space The Hofbogen, we adjusted the code a little bit since we wanted to select a complete row of voxels.</p>
-<p><strong>1.4 Construct Distance to Hogbogen Lattice</strong></p>
+<p>For the third green space The Hofbogen, we extracted a complete row in the XY-direction. The rest of the process was still the same.</p>
 <p><img alt="title" src="../../../../img/Hofbogen.png" /></p>
 <h2 id="roof-garden-acces">Roof garden acces</h2>
-<p>Besides the three main green spaces in the near neighborhood of the envelope, there are more green space to which function could have a connection namely the roof gardens and the gardens inside of the building. These gardens don’t have a fixed location in the building and could potentially change constantly. The relation between a function and a roof garden is therefore called a dynamic relation. 
-To accomplish this we altered the code given to us by Shervin Azadi a little bit. Within the notebook W+2_mcda_seed_allocation before the agent for loop we updated the dynamic field.</p>
-<h3 id="programcsv">Program.csv</h3>
-<p>space_name, space_id, ent_acc, sun_acc, lobby_acc, roof_garden_acc,  workshop_acc
-lobby, 0, 1.0, 0.0, 1.0, 0.0, 0.0
-roof_garden, 1, 0.0, 1.0, 0.0, 1.0, 0.0
-workshop, 2, 0.5, 0.5, 0.0, 1, 1.0</p>
-<table><thead><tr class="header"><th>space_name</th><th>space_id</th><th>ent_acc</th><th>sun_acc</th><th>lobby_acc</th><th>lobby_acc</th><th>lobby_acc
+<p>Besides the three main green spaces in the near neighborhood of the envelope, there are more green space to which function could have a connection namely the roof gardens and the gardens inside of the building. These gardens don’t have a fixed location in the building and could potentially change constantly. The relation between a function and a roof garden is therefore called a dynamic relation. For now we could say that a roof garden needs to be accessible from the side, so we stated that if a voxel has no voxel above it, and at least one voxel in the XY-direction, than we make it a roof garden. To define the connectivity between a function and this dynamic location of the roof garden we altered the code a little bit which is explained in the flowchart below.</p>
+<p><img alt="title" src="../../../../img/Flowchart_roofgarden_acces.png" /></p>
+<p><strong>Program.csv</strong></p>
+<p>For the sake of clarity we specified a small program which will make things clear.</p>
+<table><thead><tr class="header"><th>space_name</th><th>space_id</th><th>ent_acc</th><th>sun_acc</th><th>lobby_acc</th><th>roof_garden_acc</th><th>workshop_acc
 
-</th></tr></thead><tbody><tr class="odd"><td>180mm x 240mm</td><td>(2 x 180) + (1 x 240) = 610</td><td>3:4</td><td>6</td><td>900x900 mm
-</th></tr></thead><tbody><tr class="odd"><td></td><td></td><td></td><td></td><td>1800x1800 mm
-</th></tr></thead><tbody><tr class="odd"><td></td><td></td><td></td><td></td><td>3600x3600 mm</td></tr><tr></tbody></table>
+</th></tr></thead><tbody><tr class="odd"><td>lobby</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0
+</th></tr></thead><tbody><tr class="odd"><td>roof_garden</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0
+</th></tr></thead><tbody><tr class="odd"><td>workshop</td><td>2</td><td>0.5</td><td>0.5</td><td>0</td><td>1</td><td>1
+</p></td></tr></tbody></table>
 
+<p>As you can see in the visualization our agents behave in a manner we want them to behave. We have created a tendency in the workshop function to grow towards the roof-garden no matter what its location will be.</p>
 <p><img alt="title" src="../../../../img/W%2B2_mcda_seed_allocation_atraction.PNG" /></p>
-<p>In this visualisation we see that the workshop agent is...</p>
                 
               
               
