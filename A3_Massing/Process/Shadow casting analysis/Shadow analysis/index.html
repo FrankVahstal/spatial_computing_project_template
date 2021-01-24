@@ -14,7 +14,7 @@
     
     
       
-        <title>Shadow analysis - Spatial Computing Project</title>
+        <title>Shadow casting analysis - Spatial Computing Project</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#shadow-analysis" class="md-skip">
+        <a href="#shadow-casting-analysis" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +95,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Shadow analysis
+              Shadow casting analysis
             
           </span>
         </div>
@@ -247,10 +247,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     <label class="md-nav__link" for="nav-4">
       A3_Massing
       <span class="md-nav__icon md-icon"></span>
@@ -267,10 +269,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" >
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
     <label class="md-nav__link" for="nav-4-1">
       Process
       <span class="md-nav__icon md-icon"></span>
@@ -299,11 +303,70 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../Shadow analysis/Shadow analysis.md" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Shadow casting analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Shadow casting analysis
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope-before" class="md-nav__link">
+    Envelope before
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope-after" class="md-nav__link">
+    Envelope after
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -325,7 +388,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Sun analysis/Sun analysis.md" class="md-nav__link">
+    <a href="../../Sun%20access%20analysis/Sun%20analysis/" class="md-nav__link">
       Sun access analysis
     </a>
   </li>
@@ -570,7 +633,7 @@
 
   <li class="md-nav__item">
     <a href="../../../../index/scripts/shadow/" class="md-nav__link">
-      Shadow analysis
+      Shadow casting analysis
     </a>
   </li>
 
@@ -594,7 +657,7 @@
 
   <li class="md-nav__item">
     <a href="../../../../index/scripts/sun/" class="md-nav__link">
-      Sun analysis
+      Sun access analysis
     </a>
   </li>
 
@@ -782,7 +845,7 @@
               
                 
                 
-                <h1 id="shadow-analysis">Shadow analysis</h1>
+                <h1 id="shadow-casting-analysis">Shadow casting analysis</h1>
 <h3 id="explanation">Explanation</h3>
 <p>The second analysis is the shadow casting analysis. With this analysis we want to see which part of the building is casting shadow on the surroundings (including the park). The voxels that casts most shadow are being removed from the envelope. </p>
 <p>To see which exact voxels these are, we are computing intersections between shooting rays and the context mesh. If a ray does not intersect with the context, a voxel has stand in the way and will cause shadow.</p>
@@ -827,7 +890,7 @@
 <span class="n">Output</span><span class="p">:</span> <span class="n">voxelized</span> <span class="n">envelope</span> <span class="n">after</span> <span class="n">shadow</span> <span class="n">analysis</span> <span class="p">(</span><span class="n">low</span> <span class="ow">and</span> <span class="n">high</span> <span class="n">res</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a href="/notebooks/shadow/">Shadow analysis full python code</a></p>
+<p><a href="/spatial_computing_project_template/index/scripts/shadow/">Shadow casting analysis full notebook</a></p>
                 
               
               
@@ -842,6 +905,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../Atrium%20allocation/Atrium%20allocation/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Atrium Allocation
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../Visibility%20analysis/Visibility%20analysis/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Visibility analysis
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

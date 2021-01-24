@@ -14,7 +14,7 @@
     
     
       
-        <title>Sun analysis - Spatial Computing Project</title>
+        <title>Sun access analysis - Spatial Computing Project</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sun-analysis" class="md-skip">
+        <a href="#sun-access-analysis" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +95,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Sun analysis
+              Sun access analysis
             
           </span>
         </div>
@@ -247,10 +247,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
     <label class="md-nav__link" for="nav-4">
       A3_Massing
       <span class="md-nav__icon md-icon"></span>
@@ -267,10 +269,12 @@
           
           
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" >
+    <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4-1" type="checkbox" id="nav-4-1" checked>
     <label class="md-nav__link" for="nav-4-1">
       Process
       <span class="md-nav__icon md-icon"></span>
@@ -301,7 +305,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Shadow analysis/Shadow analysis.md" class="md-nav__link">
+    <a href="../../Shadow%20casting%20analysis/Shadow%20analysis/" class="md-nav__link">
       Shadow casting analysis
     </a>
   </li>
@@ -323,11 +327,63 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../../Sun analysis/Sun analysis.md" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Sun access analysis
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
       Sun access analysis
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope" class="md-nav__link">
+    Envelope
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -570,7 +626,7 @@
 
   <li class="md-nav__item">
     <a href="../../../../index/scripts/shadow/" class="md-nav__link">
-      Shadow analysis
+      Shadow casting analysis
     </a>
   </li>
 
@@ -594,7 +650,7 @@
 
   <li class="md-nav__item">
     <a href="../../../../index/scripts/sun/" class="md-nav__link">
-      Sun analysis
+      Sun access analysis
     </a>
   </li>
 
@@ -775,7 +831,7 @@
               
                 
                 
-                <h1 id="sun-analysis">Sun analysis</h1>
+                <h1 id="sun-access-analysis">Sun access analysis</h1>
 <h3 id="explanation">Explanation</h3>
 <p>With the sun access analysis we wanted to gain insight into the amount of sunlight  on different places in the building. We want to use this information for placing the different agents in an optimal place.</p>
 <p>We have started this analysis by importing the final envelope and are again computing intersections between rays and the context. Now we are actually shooting rays upwards. When an intersection between the ray and the context is found, the voxel does not fully see the sun and thus, has a lower percentage of sun access.</p>
@@ -814,7 +870,7 @@
 <span class="n">Output</span><span class="p">:</span> <span class="n">sun</span> <span class="n">access</span> <span class="n">csv</span> <span class="p">(</span><span class="n">low</span> <span class="ow">and</span> <span class="n">high</span> <span class="n">res</span><span class="p">)</span>
 </code></pre></div>
 
-<p><a href="/notebooks/sun/">Sun analysis full python code</a></p>
+<p><a href="/spatial_computing_project_template/index/scripts/sun/">Sun analysis full notebook</a></p>
                 
               
               
@@ -829,6 +885,41 @@
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../Visibility%20analysis/Visibility%20analysis/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Visibility analysis
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../Public%20entrance%20analysis/Public%20entrance%20analysis/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Public entrance analysis
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
