@@ -14,7 +14,7 @@
     
     
       
-        <title>Green analysis - Spatial Computing Project</title>
+        <title>Green acces analysis - Spatial Computing Project</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#green-analysis" class="md-skip">
+        <a href="#green-acces-analysis" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +95,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Green analysis
+              Green acces analysis
             
           </span>
         </div>
@@ -362,12 +362,12 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Green analysis
+        Green acces analysis
         <span class="md-nav__icon md-icon"></span>
       </label>
     
     <a href="./" class="md-nav__link md-nav__link--active">
-      Green analysis
+      Green acces analysis
     </a>
     
       
@@ -384,43 +384,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#park" class="md-nav__link">
-    Park
+  <a href="#explanation" class="md-nav__link">
+    Explanation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#raingarden" class="md-nav__link">
-    Raingarden
+  <a href="#distance-lattice" class="md-nav__link">
+    Distance lattice
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#hofbogen" class="md-nav__link">
-    Hofbogen
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#roof-garden-acces" class="md-nav__link">
-    Roof garden acces
-  </a>
-  
-    <nav class="md-nav" aria-label="Roof garden acces">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
-    To do
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -633,8 +613,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../../index/scripts/Voxelization/" class="md-nav__link">
+    <a href="../../../../index/scripts/Voxelization.ipynb" class="md-nav__link">
       Voxelization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/atrium allocation and green path finding.ipynb.ipynb" class="md-nav__link">
+      Atrium allocation
     </a>
   </li>
 
@@ -671,6 +663,30 @@
   <li class="md-nav__item">
     <a href="../../../../index/scripts/sun/" class="md-nav__link">
       Sun access analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/green/" class="md-nav__link">
+      Green access analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/noise%20field/" class="md-nav__link">
+      Noise analysis
     </a>
   </li>
 
@@ -818,43 +834,23 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#park" class="md-nav__link">
-    Park
+  <a href="#explanation" class="md-nav__link">
+    Explanation
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#raingarden" class="md-nav__link">
-    Raingarden
+  <a href="#distance-lattice" class="md-nav__link">
+    Distance lattice
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#hofbogen" class="md-nav__link">
-    Hofbogen
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
   </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#roof-garden-acces" class="md-nav__link">
-    Roof garden acces
-  </a>
-  
-    <nav class="md-nav" aria-label="Roof garden acces">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
-    To do
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -871,44 +867,30 @@
               
                 
                 
-                <h1 id="green-analysis">Green Analysis</h1>
-<p>In this analysis we wanted to create some attraction to green spaces in the direct neighborhood of the envelope. The eventual goal is to minimize the graph distance of a voxel which is in need of green space, and the green space its self. In this flowchart below we explained how we have tried to accomplish this.</p>
-<p><img alt="title" src="../../../../img/Flowchart_green_acces.png" /></p>
-<h3 id="park">Park</h3>
-<p>The first public green space we have defined is the small park betweenn the Almondestraat and the Schoterbosstraat. As described above in the flowchart we did this by extracting a representing voxel from the distance field matrix. Below you can see the visualization. </p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># select the corresponding row in the matrix</span>
-<span class="n">ent_2_dist</span> <span class="o">=</span> <span class="n">dist_mtrx</span><span class="p">[</span><span class="mi">422</span><span class="p">]</span>
+                <h1 id="green-acces-analysis">Green acces analysis</h1>
+<h3 id="explanation">Explanation</h3>
+<p>Because the three public green spaces in the nearby neighborhood of the building play such a central role in our project, we also wanted to compute the distance to this spaces, because we think it's important that this space should be as reachable as possible for the people who are using the building.</p>
+<h3 id="distance-lattice">Distance lattice</h3>
+<p><img alt="title" src="../../../../img/Distance_public_green.png" /></p>
+<h3 id="pseudo-code">Pseudo code</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">Final</span> <span class="n">voxelized</span> <span class="n">envelope</span> <span class="p">(</span><span class="n">high</span> <span class="n">res</span> <span class="ow">and</span> <span class="n">low</span> <span class="n">res</span><span class="p">)</span>
 
-<span class="c1"># find the maximum valid value</span>
-<span class="n">max_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">ent_2_dist</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="mf">1.</span> <span class="n">Define</span> <span class="n">stencil</span> <span class="p">(</span><span class="n">Von</span> <span class="n">Neumann</span> <span class="n">neighborhood</span><span class="p">)</span>
 
-<span class="c1"># set the infinities to one more than the maximum valid values</span>
-<span class="n">ent_2_dist</span><span class="p">[</span><span class="n">ent_2_dist</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_valid</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="mf">2.</span> <span class="n">Import</span> <span class="n">envelope</span> <span class="n">lattice</span>
+
+<span class="mf">3.</span> <span class="n">Distance</span> <span class="n">field</span> <span class="n">construction</span> 
+<span class="n">Extract</span> <span class="n">the</span> <span class="n">connectivity</span> <span class="n">graph</span> 
+<span class="n">Compute</span> <span class="n">the</span> <span class="n">distances</span> <span class="n">by</span> <span class="n">the</span> <span class="n">Floyd</span> <span class="n">Warshll</span> <span class="n">algorithm</span> <span class="ow">and</span> <span class="n">store</span> <span class="n">the</span> <span class="n">distances</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">distance</span> <span class="n">matrix</span>
+<span class="n">Select</span> <span class="n">three</span> <span class="n">voxel</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">envelope</span> <span class="n">that</span> <span class="n">represent</span> <span class="n">a</span> <span class="n">public</span> <span class="n">green</span> <span class="n">space</span>
+<span class="n">Construct</span> <span class="n">the</span> <span class="n">distance</span> <span class="n">the</span> <span class="n">three</span> <span class="n">public</span> <span class="n">green</span> <span class="n">spaces</span>
+
+<span class="mf">4.</span> <span class="n">Interpolate</span> <span class="n">the</span> <span class="n">distance</span> <span class="n">lattice</span> <span class="n">over</span> <span class="n">low</span> <span class="n">resolution</span> <span class="n">envelope</span> <span class="ow">and</span> <span class="n">high</span> <span class="n">resolution</span> <span class="n">envelope</span>
+
+<span class="n">Output</span><span class="p">:</span> <span class="n">Distance</span> <span class="n">lattice</span>
 </code></pre></div>
 
-<p><img alt="title" src="../../../../img/Park.png" /></p>
-<h3 id="raingarden">Raingarden</h3>
-<p>The same process we repeated for the second green space which is the Raingarden on the south east side of the envelope.</p>
-<p><img alt="title" src="../../../../img/Raingarden.PNG" /></p>
-<h3 id="hofbogen">Hofbogen</h3>
-<p>For the third green space The Hofbogen, we extracted a complete row in the XY-direction. The rest of the process was still the same.</p>
-<p><img alt="title" src="../../../../img/Hofbogen.png" /></p>
-<h2 id="roof-garden-acces">Roof garden acces</h2>
-<p>Besides the three main green spaces in the near neighborhood of the envelope, there are more green space to which function could have a connection namely the roof gardens and the gardens inside of the building. These gardens don’t have a fixed location in the building and could potentially change constantly. The relation between a function and a roof garden is therefore called a dynamic relation. To define the connectivity between a function and this dynamic location of the roof garden we altered the code a little bit which is explained in the flowchart below.</p>
-<p><img alt="title" src="../../../../img/Flowchart_roofgarden_acces.png" /></p>
-<p><strong>Program.csv</strong></p>
-<p>For the sake of clarity we specified a small program which will make things clear.</p>
-<table><thead><tr class="header"><th>space_name</th><th>space_id</th><th>ent_acc</th><th>sun_acc</th><th>lobby_acc</th><th>roof_garden_acc</th><th>workshop_acc
-
-</th></tr></thead><tbody><tr class="odd"><td>lobby</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0</td><td>0
-</th></tr></thead><tbody><tr class="odd"><td>roof_garden</td><td>1</td><td>0</td><td>1</td><td>0</td><td>1</td><td>0
-</th></tr></thead><tbody><tr class="odd"><td>workshop</td><td>2</td><td>0.5</td><td>0.5</td><td>0</td><td>1</td><td>1
-</p></td></tr></tbody></table>
-
-<p>As you can see in the visualization our agents behave in a manner we want them to behave. We have created a tendency in the workshop function to grow towards the roof-garden no matter what its location will be.</p>
-<p><img alt="title" src="../../../../img/W%2B2_mcda_seed_allocation_atraction.PNG" /></p>
-<h4 id="to-do">To do</h4>
-<p>We would still like to write a piece of code for the allocation of the roof gardens in the manner described above. </p>
+<p><a href="/spatial_computing_project_template/index/scripts/atrium_allocation_and_green_path_finding/">Atrium allocation and green path finding full notebook</a></p>
                 
               
               

@@ -353,8 +353,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Green%20analysis/Green%20analysis/" class="md-nav__link">
-      Green analysis
+    <a href="../../Green%20acces%20analysis/Green%20acces%20analysis/" class="md-nav__link">
+      Green acces analysis
     </a>
   </li>
 
@@ -396,28 +396,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#interior-noise" class="md-nav__link">
-    Interior noise
+  <a href="#exterior-noise" class="md-nav__link">
+    Exterior noise
   </a>
-  
-    <nav class="md-nav" aria-label="Interior noise">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
-    To do
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exterior-noise" class="md-nav__link">
-    Exterior noise
+  <a href="#noise-lattice" class="md-nav__link">
+    Noise lattice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interior-noise" class="md-nav__link">
+    Interior noise
   </a>
   
 </li>
@@ -619,8 +620,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../../index/scripts/Voxelization/" class="md-nav__link">
+    <a href="../../../../index/scripts/Voxelization.ipynb" class="md-nav__link">
       Voxelization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/atrium allocation and green path finding.ipynb.ipynb" class="md-nav__link">
+      Atrium allocation
     </a>
   </li>
 
@@ -657,6 +670,30 @@
   <li class="md-nav__item">
     <a href="../../../../index/scripts/sun/" class="md-nav__link">
       Sun access analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/green/" class="md-nav__link">
+      Green access analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/noise%20field/" class="md-nav__link">
+      Noise analysis
     </a>
   </li>
 
@@ -804,28 +841,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#interior-noise" class="md-nav__link">
-    Interior noise
+  <a href="#exterior-noise" class="md-nav__link">
+    Exterior noise
   </a>
-  
-    <nav class="md-nav" aria-label="Interior noise">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#to-do" class="md-nav__link">
-    To do
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#exterior-noise" class="md-nav__link">
-    Exterior noise
+  <a href="#noise-lattice" class="md-nav__link">
+    Noise lattice
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interior-noise" class="md-nav__link">
+    Interior noise
   </a>
   
 </li>
@@ -844,23 +882,29 @@
                 
                 
                 <h1 id="noise-analysis">Noise analysis</h1>
-<h2 id="interior-noise">Interior noise</h2>
-<p>With interior noise we mean the different amount of noise which could be produced by different functions. This is important in our case beceaus there are several function that allow a very small amount of noise. </p>
-<p><img alt="title" src="../../../../img/Flowchart_interior_noise.png" /></p>
-<p>We have implemented this again in a test case with a very small program. </p>
-<table><thead><tr class="header"><th>space_name</th><th>space_id</th><th>ent_rep</th><th>sun_rep</th><th>lobby_rep</th><th>library_rep</th><th>pub_rep
+<h3 id="exterior-noise">Exterior noise</h3>
+<p>Because our plot is located in the centre of a large city (Rotterdam) we need to be able to cope with noise. First of all we need to calculate the exterior noise to which our building will be exposed to. For this we, in the urban analysis, analyzed a map of the "Atlas van de leefomgeving". In here we saw that there is a busy road (Heer Bokelweg) within reach of 100 meters of the plot. The noise level of this road was 70 decibel. To represent this road in our notebook, we have placed several noise points at the location of the street and gave them a noise base level of 70. Thereafter we calculated the Euclidean distance from the road to the plot. TO calculate the noise lattice we used a formula of the book <em>Environmental Noise</em> by ... Because a road is a line source we used this formula: </p>
+<p>Lp = LW - 10 log10 (r) – 5 dB</p>
+<h3 id="noise-lattice">Noise lattice</h3>
+<p><img alt="title" src="../../../../img/noise_field.png" /></p>
+<h3 id="pseudo-code">Pseudo code</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">Final</span> <span class="n">envelope</span> <span class="p">(</span><span class="n">high</span> <span class="n">res</span><span class="p">)</span>
 
-</th></tr></thead><tbody><tr class="odd"><td>lobby</td><td>0</td><td>0</td><td>1</td><td>0</td><td>0</td><td>0.5
-</th></tr></thead><tbody><tr class="odd"><td>library</td><td>1</td><td>0.5</td><td>1</td><td>0</td><td>0</td><td>1
-</th></tr></thead><tbody><tr class="odd"><td>pub</td><td>2</td><td>0</td><td>0.5</td><td>0.5</td><td>1</td><td>0
-</p></td></tr></tbody></table>
+<span class="mf">1.</span> <span class="n">Import</span> <span class="n">envelope</span> <span class="n">lattice</span>
 
-<p><img alt="title" src="../../../../img/W%2B2_mcda_seed_allocation_repel.PNG" /></p>
-<p>As we can see in this visualization the pub does repel the library, which is eventually what we want.</p>
-<h4 id="to-do">To do</h4>
-<p>-The code we used in the example uses graph distance, where we need Euclidean distance.</p>
-<p>-If we want to use this code, we need to be able to combine it with the same code for attraction. We need to find a way to do this, because a value 0 on the scale of repel is still something totally different than a value 1 on the scale of attraction. </p>
-<h2 id="exterior-noise">Exterior noise</h2>
+<span class="mf">2.</span> <span class="n">Load</span> <span class="n">noise</span> <span class="n">source</span> <span class="n">points</span> 
+
+<span class="mf">3.</span> <span class="n">Creation</span> <span class="n">of</span> <span class="n">Noise</span> <span class="n">field</span>
+<span class="n">Extract</span> <span class="n">the</span> <span class="n">coordinates</span> <span class="n">of</span> <span class="n">the</span> <span class="n">centroids</span> <span class="n">of</span> <span class="n">the</span> <span class="n">voxels</span>
+<span class="n">Set</span> <span class="n">a</span> <span class="n">noise</span> <span class="n">base</span> <span class="n">level</span> <span class="k">for</span> <span class="n">the</span> <span class="n">noise</span> <span class="n">points</span>
+<span class="n">Calculate</span> <span class="n">the</span> <span class="n">Euclidean</span> <span class="n">distance</span> <span class="n">between</span> <span class="n">the</span> <span class="n">centroids</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">noise</span> <span class="n">points</span> 
+<span class="n">Compute</span> <span class="n">the</span> <span class="n">noise</span> <span class="n">lattice</span> <span class="k">with</span> <span class="n">the</span> <span class="n">noise</span> <span class="n">base</span> <span class="n">level</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">Euclidean</span> <span class="n">distance</span> 
+
+<span class="n">Output</span><span class="p">:</span> <span class="n">Noise</span> <span class="n">field</span> <span class="n">lattice</span>
+</code></pre></div>
+
+<p><a href="/spatial_computing_project_template/index/scripts/noise_field/">Noise field full notebook</a></p>
+<h3 id="interior-noise">Interior noise</h3>
                 
               
               
@@ -879,7 +923,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../Green%20analysis/Green%20analysis/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../Green%20acces%20analysis/Green%20acces%20analysis/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -888,7 +932,7 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Green analysis
+                Green acces analysis
               </div>
             </div>
           </a>

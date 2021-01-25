@@ -301,9 +301,52 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Atrium Allocation
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
       Atrium Allocation
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope" class="md-nav__link">
+    Envelope
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -362,8 +405,8 @@
 
 
   <li class="md-nav__item">
-    <a href="../../Green%20analysis/Green%20analysis/" class="md-nav__link">
-      Green analysis
+    <a href="../../Green%20acces%20analysis/Green%20acces%20analysis/" class="md-nav__link">
+      Green acces analysis
     </a>
   </li>
 
@@ -570,8 +613,20 @@
 
 
   <li class="md-nav__item">
-    <a href="../../../../index/scripts/Voxelization/" class="md-nav__link">
+    <a href="../../../../index/scripts/Voxelization.ipynb" class="md-nav__link">
       Voxelization
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/atrium allocation and green path finding.ipynb.ipynb" class="md-nav__link">
+      Atrium allocation
     </a>
   </li>
 
@@ -608,6 +663,30 @@
   <li class="md-nav__item">
     <a href="../../../../index/scripts/sun/" class="md-nav__link">
       Sun access analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/green/" class="md-nav__link">
+      Green access analysis
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../../../index/scripts/noise%20field/" class="md-nav__link">
+      Noise analysis
     </a>
   </li>
 
@@ -748,6 +827,35 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#envelope" class="md-nav__link">
+    Envelope
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -760,12 +868,42 @@
                 
                 
                 <h1 id="atrium-allocation">Atrium allocation</h1>
+<h3 id="explanation">Explanation</h3>
 <p>Before we dive into the several analyses we did, we first want to implement our concept into our model because this will substantially change the shape of our building.</p>
 <p><img alt="title" src="../../../img/Flowchart_atrium.png" /></p>
+<h3 id="envelope">Envelope</h3>
 <p>To do this we first allocated a voxel in the center of the building, by first calculating the length of the x-direction, and then calculating y-direction of the voxelized envelope, and dividing both by 2. The center of the building represents the heart and will eventually be the atrium. </p>
-<p><img alt="title" src="../../../img/Atrium_center.png" /></p>
+<p><img alt="title" src="../../../../img/Atrium_center.png" /></p>
 <p>Now we need to connect the hart to the three public green spaces. This we do by the a-star algorithm to find the shortest path to the center of the building. To find it's way through the building the algorithm takes the Moore neighborhood into acount, so it can grow diagonally. </p>
-<p><img alt="title" src="../../../img/Atrium and green path_onbewerkt.png" /></p>
+<p><img alt="title" src="../../../../img/Atrium%20and%20green%20path_onbewerkt.png" /></p>
+<h3 id="pseudo-code">Pseudo code</h3>
+<div class="codehilite"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">Voxelized</span> <span class="n">envelope</span> <span class="p">(</span><span class="n">high</span> <span class="n">res</span><span class="p">)</span> 
+
+<span class="mf">1.</span> <span class="n">Define</span> <span class="n">Stencil</span> <span class="p">(</span><span class="n">Moore</span> <span class="n">neighborhood</span><span class="p">)</span>
+
+<span class="mf">2.</span> <span class="n">Import</span> <span class="n">Lattice</span>
+
+<span class="mf">3.</span> <span class="n">Import</span> <span class="n">Agents</span> <span class="n">information</span>
+<span class="mi">1</span> <span class="n">agent</span> <span class="n">that</span> <span class="n">represents</span> <span class="n">the</span> <span class="n">atrium</span>
+<span class="mi">3</span> <span class="n">agents</span> <span class="n">that</span> <span class="n">represent</span> <span class="n">a</span> <span class="n">public</span> <span class="n">green</span> <span class="n">space</span>
+
+<span class="mf">4.</span> <span class="n">Creation</span> <span class="n">of</span> <span class="n">vertical</span> <span class="n">shaft</span>
+<span class="n">Make</span> <span class="n">a</span> <span class="n">shaft</span> <span class="n">out</span> <span class="n">of</span> <span class="n">agent</span> <span class="mi">0</span> <span class="p">(</span><span class="n">atrium</span><span class="p">)</span>
+
+<span class="mf">4.</span> <span class="n">Creation</span> <span class="n">horizontal</span> <span class="n">corridors</span>
+<span class="n">Extract</span> <span class="n">the</span> <span class="n">connectivity</span> <span class="n">graph</span> 
+<span class="n">Find</span> <span class="n">the</span> <span class="n">shortest</span> <span class="n">path</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">three</span> <span class="n">public</span> <span class="n">green</span> <span class="n">spaces</span> <span class="n">to</span> <span class="n">the</span> <span class="n">atrium</span>
+<span class="n">Mark</span> <span class="n">the</span> <span class="n">short</span> <span class="n">path</span> <span class="k">as</span> <span class="n">unavailable</span> <span class="ow">and</span> <span class="n">hereby</span> <span class="n">construct</span> <span class="n">a</span> <span class="n">corridor</span>
+
+<span class="mf">5.</span> <span class="n">Edit</span> <span class="n">voxel</span>
+<span class="n">Mark</span> <span class="n">two</span> <span class="n">voxel</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">y</span> <span class="n">direction</span> <span class="n">of</span> <span class="n">the</span> <span class="n">corridor</span> <span class="k">as</span> <span class="n">unavailable</span>
+<span class="n">Mark</span> <span class="n">every</span> <span class="n">voxel</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">positive</span> <span class="n">z</span><span class="o">-</span><span class="n">direction</span> <span class="n">of</span> <span class="n">the</span> <span class="n">corridor</span> <span class="k">as</span> <span class="n">unavailable</span>
+<span class="n">Mark</span> <span class="n">two</span> <span class="n">voxel</span> <span class="ow">in</span> <span class="n">x</span> <span class="ow">and</span> <span class="n">y</span> <span class="n">direction</span> <span class="n">of</span> <span class="n">the</span> <span class="n">shaft</span> <span class="k">as</span> <span class="n">unavailable</span>
+
+<span class="n">Output</span><span class="p">:</span> <span class="n">Voxelized</span> <span class="n">envelope</span> <span class="n">atrium</span> <span class="n">allocation</span> <span class="ow">and</span> <span class="n">green</span> <span class="n">path</span> <span class="n">finding</span> <span class="p">(</span><span class="n">high</span> <span class="n">res</span><span class="p">)</span>
+</code></pre></div>
+
+<p><a href="/spatial_computing_project_template/index/scripts/atrium_allocation_and_green_path_finding/">Atrium allocation and green path finding full notebook</a></p>
                 
               
               
