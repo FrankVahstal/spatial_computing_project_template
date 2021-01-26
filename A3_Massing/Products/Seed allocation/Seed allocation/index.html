@@ -439,6 +439,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -813,6 +820,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -828,9 +842,25 @@
                 
                 <h1 id="seed-allocation">Seed allocation</h1>
 <h3 id="explanation">Explanation</h3>
-<p>Now that we have all the data that we need stored in lattices, we can start to allocate the first seeds for the agents.</p>
+<p>We have stored all the lattices we have computed before and used them to locate the agents. The agents are placed inside a voxel that is, according to the specific preferences, the optimal voxel to be in. </p>
 <p><img alt="Title" src="../../../../img/seed_allocation.jpg" /></p>
+<h3 id="pseudo-code">Pseudo code</h3>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.</span> <span class="n">For</span> <span class="n">each</span> <span class="n">function</span>
+<span class="n">Find</span> <span class="n">the</span> <span class="n">best</span> <span class="n">voxel</span> <span class="k">with</span> <span class="n">the</span> <span class="n">higest</span> <span class="n">score</span> <span class="n">based</span> <span class="n">on</span>
+<span class="n">their</span> <span class="n">criteria</span><span class="p">(</span><span class="mi">0</span> <span class="n">till</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">the</span> <span class="n">enviromentall</span> <span class="n">info</span> <span class="p">(</span><span class="mi">0</span>
+<span class="n">till</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">Enviromentall</span> <span class="n">info</span><span class="p">:</span>
+<span class="o">-</span> <span class="n">Entrance</span> <span class="n">Acces</span>
+<span class="o">-</span> <span class="n">Sun</span> <span class="n">Acces</span>
+<span class="o">-</span> <span class="n">Noise</span>
+<span class="o">-</span> <span class="n">Green</span> <span class="n">Acces</span>
+<span class="o">-</span> <span class="c1"># Facade Acces</span>
+<span class="o">-</span> <span class="c1"># Floor Acces</span>
+<span class="n">Set</span> <span class="n">voxel</span> <span class="k">as</span> <span class="n">occupied</span>
+</code></pre></div>
+
 <p><a href="/spatial_computing_project_template/index/scripts/abm/">Seed allocation and Agent growth full notebook</a></p>
+<p><span style="color: #76AB24;"><em>To make the seed allocation better we could have implemented some improvement. First of all we could define a hierarchy in what order the agents are placed. So first the most important agents are placed and then the less important ones. We could also add more criteria like floor preference, closeness to façade and a repel option that makes sure functions will never be crammed in a corner and thus leaving space for each other to grow without being interrupted by each other at the start. </em></span></p>
                 
               
               

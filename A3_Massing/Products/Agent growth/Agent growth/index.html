@@ -434,9 +434,45 @@
       
     
     
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Agent growth
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
     <a href="./" class="md-nav__link md-nav__link--active">
       Agent growth
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
     
   </li>
 
@@ -771,6 +807,28 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#explanation" class="md-nav__link">
+    Explanation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pseudo-code" class="md-nav__link">
+    Pseudo code
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -783,7 +841,49 @@
                 
                 
                 <h1 id="agent-growth">Agent growth</h1>
+<h3 id="explanation">Explanation</h3>
+<p><img alt="Title" src="../../../../img/ABM_1.png" /></p>
+<p><img alt="Title" src="../../../../img/ABM_2.png" /></p>
+<h3 id="pseudo-code">Pseudo code</h3>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.</span> <span class="n">Create</span> <span class="n">stencil</span> <span class="n">z</span> <span class="o">&amp;</span> <span class="n">setncil</span> <span class="n">xy</span>
+<span class="mf">2.</span> <span class="n">While</span> <span class="n">the</span> <span class="n">frame</span> <span class="n">count</span> <span class="ow">is</span> <span class="n">below</span> <span class="n">the</span> <span class="n">maximumk</span> <span class="n">of</span> <span class="mi">620</span>
+<span class="n">NOISE</span>
+<span class="mf">2.1</span> <span class="o">-</span> <span class="n">Check</span> <span class="n">silent</span> <span class="n">level</span> <span class="o">&amp;</span> <span class="n">noise</span> <span class="n">repel</span>
+<span class="n">DYNAMIC</span> <span class="n">RELATIONS</span>
+<span class="mf">2.2</span> <span class="o">-</span> <span class="n">For</span> <span class="n">every</span> <span class="n">agent</span>
+<span class="mf">2.2</span><span class="o">.</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Find</span> <span class="n">location</span>
+<span class="mf">2.2</span><span class="o">.</span><span class="mi">2</span> <span class="o">-</span> <span class="n">Find</span> <span class="n">distance</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">voxel</span> <span class="n">to</span> <span class="n">every</span> <span class="n">other</span>
+<span class="n">voxel</span>
+<span class="mf">2.2</span><span class="o">.</span><span class="mi">3</span> <span class="o">-</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">distance</span> <span class="n">lattice</span> <span class="ow">in</span> <span class="n">agn_acc_list</span>
+<span class="mf">2.3</span> <span class="n">Combine</span> <span class="n">distance</span> <span class="n">lattice</span> <span class="o">&amp;</span> <span class="n">agn_acc_list</span>
+<span class="mf">2.4</span> <span class="o">-</span> <span class="n">For</span> <span class="n">every</span> <span class="n">agent</span>
+<span class="mf">2.4</span><span class="o">.</span><span class="mi">1</span> <span class="o">-</span> <span class="n">Find</span> <span class="n">current</span> <span class="n">location</span>
+<span class="mf">2.4</span><span class="o">.</span><span class="mi">2</span> <span class="o">-</span> <span class="n">For</span> <span class="n">every</span> <span class="n">location</span>
+<span class="n">STENCILS</span><span class="o">/</span><span class="n">HORIZONTAL</span> <span class="n">GROWTH</span>
+<span class="o">-</span> <span class="n">Check</span> <span class="n">neighs</span> <span class="ow">in</span> <span class="n">z</span> <span class="n">plane</span> <span class="o">&amp;</span> <span class="n">neighs</span> <span class="ow">in</span> <span class="n">xy</span> <span class="n">plane</span>
+<span class="o">-</span> <span class="n">Compare</span> <span class="n">preference</span> <span class="n">to</span> <span class="n">grow</span> <span class="ow">in</span> <span class="n">certain</span> <span class="n">plane</span>
+<span class="ow">and</span> <span class="n">give</span> <span class="n">them</span> <span class="n">a</span> <span class="n">value</span><span class="o">.</span> <span class="n">XY</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">variable</span>
+<span class="o">-</span> <span class="n">If</span> <span class="n">neigbour</span> <span class="ow">is</span> <span class="n">available</span> <span class="n">add</span> <span class="n">it</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span>
+<span class="n">free</span> <span class="n">neighbours</span>
+<span class="mf">2.4</span><span class="o">.</span><span class="mi">3</span> <span class="o">-</span> <span class="n">As</span> <span class="n">long</span> <span class="k">as</span> <span class="n">there</span> <span class="n">are</span> <span class="n">free</span> <span class="n">neighbours</span>
+<span class="o">-</span> <span class="n">Evaluate</span> <span class="n">every</span> <span class="n">neighbour</span>
+<span class="o">-</span> <span class="n">Compare</span> <span class="n">agent</span> <span class="n">preference</span> <span class="k">with</span> <span class="n">enviroment</span>
+<span class="n">info</span>
+<span class="n">SQUARENESS</span> <span class="p">(</span><span class="n">Credit</span> <span class="n">to</span> <span class="n">Maren</span><span class="p">)</span>
+<span class="o">-</span> <span class="n">Double</span> <span class="n">neighbours</span> <span class="n">get</span> <span class="n">a</span> <span class="n">higher</span> <span class="n">value</span>
+<span class="n">VOXEL</span> <span class="n">COUNT</span>
+<span class="o">-</span> <span class="n">If</span> <span class="n">the</span> <span class="n">current</span> <span class="n">voxel</span> <span class="n">count</span> <span class="ow">is</span> <span class="n">lower</span> <span class="n">than</span>
+<span class="n">the</span> <span class="n">maximum</span>
+<span class="o">-</span> <span class="n">Add</span> <span class="n">selected</span> <span class="n">neighbour</span> <span class="n">to</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">agent</span>
+<span class="n">locations</span> <span class="o">&amp;</span> <span class="nb">set</span> <span class="n">neighbour</span> <span class="k">as</span> <span class="n">unavailable</span>
+<span class="o">-</span> <span class="n">Else</span> <span class="n">stop</span>
+</code></pre></div>
+
 <p><a href="/spatial_computing_project_template/index/scripts/abm/">Seed allocation and Agent growth full notebook</a></p>
+<p><span style="color: #76AB24;"><em> Unfortunately due to limited time we have not been able to debug our current agent based model. When done with the old envelope there were no problems but with the new one some problems occur. What happends in the current model is that some parts of the new envelope are not able to be occupied during the growth process. This leaves some voxels that are occupied during the seed allocation isolated and that function then grows into places is doesn’t want to which makes no sense. This does not correspond to our data and our concept. Besides the debugging there are other improvements that could be made.</em></span></p>
+<p><span style="color: #76AB24;"><em>1.   Add a max depth criteria for each function, creating daylight access for each housing unit for example. Another idea could be to add skylights or courtyards per x amount of voxels for some functions.</em></span> </p>
+<p><span style="color: #76AB24;"><em>2.   Add floor preference and closeness to façade (outer &amp; inner)</em></span></p>
+<p><span style="color: #76AB24;"><em>3.   Have agents negotiate with each other.</em></span></p>
                 
               
               
