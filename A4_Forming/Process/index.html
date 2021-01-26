@@ -868,18 +868,18 @@
                 <h1 id="forming">Forming</h1>
 <h3 id="creating-lattices">Creating lattices</h3>
 <p>Before we did any designing on a tileset we wanted to clarify on what parts of the facade we were going to distinguish between. We explained this in the diagram that you can see below. </p>
-<p><img alt="title" src="../../../img/Diagram Facade_new.png" /></p>
+<p><img alt="title" src="../../../img/Diagram_Facade_new.png" /></p>
 <p>After making sure knew what parts of the building will get a different facade we were easliy able to design some tile sets. As you can see in this diagram we do not differentiate between north, south, east or west but in different lattices with equal facades. Therefor we use the following symmetry stencil: </p>
 <div class="codehilite"><pre><span></span><code><span class="n">Sym_str</span> <span class="o">=</span> <span class="p">[[</span><span class="s2">&quot;OO&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;XX&quot;</span><span class="p">,</span> <span class="s2">&quot;YY&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;ZP&quot;</span><span class="p">],</span> <span class="p">[</span><span class="s2">&quot;ZN&quot;</span><span class="p">]]</span>
 </code></pre></div>
 
 <h3 id="creating-the-tiles">Creating the tiles</h3>
 <p>With this stencil we start with the design of the subtile set consisting of 17 subtiles. Below you can see how we approached this. We started by designing the complete subtile set with two different materials. Our idea was that the main outer part, facing the streets, would have a more massive somewhat closed look with a lot of brick, and very deep window frames. And the inner part would become a more transparent facade to get as much daylight enter the building as possible. And the ground floor would also consist of brick to connect with the main outer part but have a more transparent look with a lot of glass. For the sake of these concepts we designed the following subtile sets.</p>
-<p><img alt="title" src="../../../img/Tile sets_all.png" />   </p>
+<p><img alt="title" src="../../img/Tile_sets_all.png" />   </p>
 <p>But after finding out that we can only export the final mesh as a complete mesh without being able to assign different textures, we decided to split the tiles up in different materials. In the end we will export all the sets per material as one mesh. Below you can see the set we made for the brick.</p>
-<p><img alt="title" src="../../../img/Tile sets_brick.png" /> </p>
+<p><img alt="title" src="../../img/Tile_sets_brick.png" /> </p>
 <p>The same we did for all the glass.</p>
-<p><img alt="title" src="../../../img/Tile sets_glass.png" /> </p>
+<p><img alt="title" src="../../img/Tile_sets_glass.png" /> </p>
 <p><span style="color: #76AB24;"><em> We didn't succeed to succesfully aply the tileset for the balconies. The lattice almost becomes like a checkerboard, and therefore the Boolean Marching Cubes algorithm doesn't recognize a lot of corners.</em></span></p>
 <h3 id="pseudo-code">Pseudo code</h3>
 <div class="codehilite"><pre><span></span><code><span class="mf">1.</span> <span class="n">Generate</span> <span class="n">symmetry</span> <span class="n">stencil</span>
@@ -909,6 +909,8 @@
 <span class="n">Create</span> <span class="n">the</span> <span class="n">facade</span> <span class="n">by</span> <span class="n">assigning</span> <span class="n">a</span> <span class="n">tile</span> <span class="nb">set</span> <span class="k">with</span> <span class="n">a</span> <span class="n">cube</span> <span class="n">lattice</span>
 <span class="n">Save</span> <span class="n">the</span> <span class="n">final</span> <span class="n">mesh</span>
 </code></pre></div>
+
+<p><a href="..........">Polygonization full notebook</a></p>
                 
               
               
