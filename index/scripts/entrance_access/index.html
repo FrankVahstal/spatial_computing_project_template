@@ -14,7 +14,7 @@
     
     
       
-        <title>Green access analysis - The Green Valley</title>
+        <title>Public entrance analysis - The Green Valley</title>
       
     
     
@@ -65,7 +65,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#distance-to-public-green" class="md-skip">
+        <a href="#entrance-access-analysis" class="md-skip">
           Skip to content
         </a>
       
@@ -95,7 +95,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Green access analysis
+              Public entrance analysis
             
           </span>
         </div>
@@ -619,18 +619,6 @@
           
           
 
-
-  <li class="md-nav__item">
-    <a href="../entrance_access/" class="md-nav__link">
-      Public entrance analysis
-    </a>
-  </li>
-
-        
-          
-          
-          
-
   
 
 
@@ -642,12 +630,12 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Green access analysis
+        Public entrance analysis
         <span class="md-nav__icon md-icon"></span>
       </label>
     
     <a href="./" class="md-nav__link md-nav__link--active">
-      Green access analysis
+      Public entrance analysis
     </a>
     
       
@@ -720,15 +708,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#14-construct-distance-to-green-lattice" class="md-nav__link">
-    1.4. Construct Distance to Green Lattice
+  <a href="#13-select-the-entrance-voxel" class="md-nav__link">
+    1.3. Select the entrance voxel
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#16-visualize-the-distance-lattice" class="md-nav__link">
-    1.6. Visualize the distance lattice
+  <a href="#14-construct-distance-to-1st-entrance-lattice" class="md-nav__link">
+    1.4. Construct Distance to 1st Entrance Lattice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-construct-distance-to-2nd-entrance-lattice" class="md-nav__link">
+    1.5. Construct Distance to 2nd Entrance Lattice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-combining-different-distance-fields" class="md-nav__link">
+    1.6. Combining different distance fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-visualize-the-distance-lattice" class="md-nav__link">
+    1.7. Visualize the distance lattice
   </a>
   
 </li>
@@ -756,6 +765,18 @@
   
 </nav>
     
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../Green/" class="md-nav__link">
+      Green access analysis
+    </a>
   </li>
 
         
@@ -933,15 +954,36 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#14-construct-distance-to-green-lattice" class="md-nav__link">
-    1.4. Construct Distance to Green Lattice
+  <a href="#13-select-the-entrance-voxel" class="md-nav__link">
+    1.3. Select the entrance voxel
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#16-visualize-the-distance-lattice" class="md-nav__link">
-    1.6. Visualize the distance lattice
+  <a href="#14-construct-distance-to-1st-entrance-lattice" class="md-nav__link">
+    1.4. Construct Distance to 1st Entrance Lattice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-construct-distance-to-2nd-entrance-lattice" class="md-nav__link">
+    1.5. Construct Distance to 2nd Entrance Lattice
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-combining-different-distance-fields" class="md-nav__link">
+    1.6. Combining different distance fields
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-visualize-the-distance-lattice" class="md-nav__link">
+    1.7. Visualize the distance lattice
   </a>
   
 </li>
@@ -1008,9 +1050,9 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="distance-to-public-green">Distance to public green</h1>
-<p><a href="/spatial_computing_project_template/A3_Massing/Process/Green%20acces%20analysis/Green%20acces%20analysis/">More about green access</a></p>
-<p>In this notebook we will compute a distance lattice for the public greenenrey in the nearby neighborhood of the building.</p>
+<h1 id="entrance-access-analysis">Entrance access analysis</h1>
+<p><a href="/spatial_computing_project_template/A3_Massing/Process/Public%20entrance%20analysis/Public%20entrance%20analysis/">More about entrance access</a></p>
+<p>In this notebook, we will analyse the access to seven different entrances. This is usefull for placing specific agents close to a specific entrance</p>
 </div>
 </div>
 </div>
@@ -1032,7 +1074,8 @@
 <span class="kn">import</span> <span class="nn">trimesh</span> <span class="k">as</span> <span class="nn">tm</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">RegularGridInterpolator</span>
+<span class="kn">import</span> <span class="nn">pickle</span>
+<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -1054,33 +1097,10 @@
 <span class="n">stencil</span> <span class="o">=</span> <span class="n">tg</span><span class="o">.</span><span class="n">create_stencil</span><span class="p">(</span><span class="s2">&quot;von_neumann&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="c1"># setting the center to zero</span>
 <span class="n">stencil</span><span class="o">.</span><span class="n">set_index</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span> <span class="mi">0</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">stencil</span><span class="p">)</span>
 </code></pre></div>
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-<code>[[[0 0 0]
-  [0 1 0]
-  [0 0 0]]
-
- [[0 1 0]
-  [1 0 1]
-  [0 1 0]]
-
- [[0 0 0]
-  [0 1 0]
-  [0 0 0]]]
-</code>
-</pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -1095,13 +1115,9 @@
 
 
 <div class="codehilite"><pre><span></span><code><span class="c1"># loading the lattice from csv</span>
-<span class="n">lattice_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;../data/voxelized_envelope_10.8.csv&#39;</span><span class="p">)</span>
+<span class="n">lattice_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;../data/final_envelope_new.csv&#39;</span><span class="p">)</span>
 <span class="n">avail_lattice</span> <span class="o">=</span> <span class="n">tg</span><span class="o">.</span><span class="n">lattice_from_csv</span><span class="p">(</span><span class="n">lattice_path</span><span class="p">)</span>
 <span class="n">init_avail_lattice</span> <span class="o">=</span> <span class="n">tg</span><span class="o">.</span><span class="n">to_lattice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="n">avail_lattice</span><span class="p">),</span> <span class="n">avail_lattice</span><span class="p">)</span>
-
-<span class="c1"># loading the lattice from csv</span>
-<span class="n">lattice_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;../data/voxelized_envelope_3.6.csv&#39;</span><span class="p">)</span>
-<span class="n">avail_lattice_highres</span> <span class="o">=</span> <span class="n">tg</span><span class="o">.</span><span class="n">lattice_from_csv</span><span class="p">(</span><span class="n">lattice_path</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -1122,13 +1138,12 @@
 
 <div class="codehilite"><pre><span></span><code><span class="c1"># find the number of all voxels</span>
 <span class="n">vox_count</span> <span class="o">=</span> <span class="n">avail_lattice</span><span class="o">.</span><span class="n">size</span> 
-<span class="nb">print</span><span class="p">(</span><span class="n">vox_count</span><span class="p">)</span>
+
 <span class="c1"># initialize the adjacency matrix</span>
 <span class="n">adj_mtrx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">vox_count</span><span class="p">,</span><span class="n">vox_count</span><span class="p">))</span>
 
 <span class="c1"># Finding the index of the available voxels in avail_lattice</span>
-<span class="n">full_lattice</span> <span class="o">=</span> <span class="n">avail_lattice</span> <span class="o">*</span> <span class="mi">0</span> <span class="o">+</span> <span class="mi">1</span>
-<span class="n">avail_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">full_lattice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
+<span class="n">avail_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">avail_lattice</span> <span class="o">==</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">T</span>
 
 <span class="c1"># fill the adjacency matrix using the list of all neighbours</span>
 <span class="k">for</span> <span class="n">vox_loc</span> <span class="ow">in</span> <span class="n">avail_index</span><span class="p">:</span>
@@ -1148,18 +1163,6 @@
 
 
 </div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-<code>540
-</code>
-</pre>
-</div>
-</div>
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
@@ -1173,7 +1176,8 @@
 
 
 <div class="codehilite"><pre><span></span><code><span class="c1"># compute the distance of all voxels to all voxels using floyd warshal algorithm</span>
-<span class="n">dist_mtrx</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">floyd_warshall_numpy</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+<span class="c1"># dist_mtrx = nx.floyd_warshall_numpy(g)</span>
+<span class="n">dist_mtrx_loaded</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span> <span class="nb">open</span><span class="p">(</span> <span class="s2">&quot;../data/dist_mtrx_final.p&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span> <span class="p">)</span> <span class="p">)</span>
 </code></pre></div>
 
 
@@ -1183,7 +1187,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="14-construct-distance-to-green-lattice">1.4. Construct Distance to Green Lattice</h3>
+<h3 id="13-select-the-entrance-voxel">1.3. Select the entrance voxel</h3>
 </div>
 </div>
 </div>
@@ -1191,128 +1195,148 @@
 <div class="input">
 
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># select the corresponding row in the matrix</span>
-<span class="n">gr_1_dist</span> <span class="o">=</span> <span class="n">dist_mtrx</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">Plotter</span><span class="p">(</span><span class="n">notebook</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># find the maximum valid value</span>
-<span class="n">max_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">gr_1_dist</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="c1"># initialize the selection lattice</span>
+<span class="n">base_lattice</span> <span class="o">=</span> <span class="n">avail_lattice</span> <span class="o">*</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">1</span>
 
-<span class="c1"># set the infinities to one more than the maximum valid values</span>
-<span class="n">gr_1_dist</span><span class="p">[</span><span class="n">gr_1_dist</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_valid</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="c1"># init base flat</span>
+<span class="n">base_flat</span> <span class="o">=</span> <span class="n">base_lattice</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+
+<span class="c1"># Set the grid dimensions: shape + 1 because we want to inject our values on the CELL data</span>
+<span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">UniformGrid</span><span class="p">()</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">base_lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="c1"># The bottom left corner of the data set</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">base_lattice</span><span class="o">.</span><span class="n">minbound</span> <span class="o">-</span> <span class="n">base_lattice</span><span class="o">.</span><span class="n">unit</span> <span class="o">*</span> <span class="mf">0.5</span>
+<span class="c1"># These are the cell sizes along each axis</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="n">base_lattice</span><span class="o">.</span><span class="n">unit</span> 
+
+<span class="c1"># adding the boundingbox wireframe</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">outline</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;grey&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Domain&quot;</span><span class="p">)</span>
+
+<span class="c1"># adding the avilability lattice</span>
+<span class="n">init_avail_lattice</span><span class="o">.</span><span class="n">fast_vis</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+
+<span class="c1"># adding axes</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_axes</span><span class="p">()</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show_bounds</span><span class="p">(</span><span class="n">grid</span><span class="o">=</span><span class="s2">&quot;back&quot;</span><span class="p">,</span> <span class="n">location</span><span class="o">=</span><span class="s2">&quot;back&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#aaaaaa&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">create_mesh</span><span class="p">(</span><span class="n">value</span><span class="p">):</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+    <span class="c1"># init base flat</span>
+    <span class="n">base_flat</span> <span class="o">=</span> <span class="n">base_lattice</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">base_flat</span> <span class="o">=</span> <span class="n">base_flat</span> <span class="o">*</span> <span class="mi">0</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="n">base_flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="n">base_new</span> <span class="o">=</span> <span class="n">base_flat</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">base_lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+    <span class="c1"># Add the data values to the cell data</span>
+    <span class="n">grid</span><span class="o">.</span><span class="n">cell_arrays</span><span class="p">[</span><span class="s2">&quot;Selection&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">base_new</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span> <span class="c1"># Flatten the array!</span>
+    <span class="c1"># filtering the voxels</span>
+    <span class="n">threshed</span> <span class="o">=</span> <span class="n">grid</span><span class="o">.</span><span class="n">threshold</span><span class="p">([</span><span class="o">-</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.9</span><span class="p">])</span>
+    <span class="c1"># adding the voxels</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">threshed</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;sphere&#39;</span><span class="p">,</span> <span class="n">show_edges</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">show_scalar_bar</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="k">return</span>
+
+<span class="n">p</span><span class="o">.</span><span class="n">add_slider_widget</span><span class="p">(</span><span class="n">create_mesh</span><span class="p">,</span> <span class="p">[</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">6000</span><span class="p">],</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;1D Index&#39;</span><span class="p">,</span> <span class="n">value</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">event_type</span><span class="o">=</span><span class="s2">&quot;always&quot;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;classic&quot;</span><span class="p">,</span> <span class="n">pointa</span><span class="o">=</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">),</span> <span class="n">pointb</span><span class="o">=</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+<span class="n">p</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="n">use_ipyvtk</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </code></pre></div>
 
 
 
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="14-construct-distance-to-1st-entrance-lattice">1.4. Construct Distance to 1st Entrance Lattice</h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># select the corresponding row in the matrix</span>
-<span class="n">gr_2_dist</span> <span class="o">=</span> <span class="n">dist_mtrx</span><span class="p">[</span><span class="mi">422</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># this cel is needed when we want to combine enntrance lattices. Here we define the first entrance</span>
+<span class="sd">&quot;&quot;&quot;# select the corresponding row in the matrix</span>
+<span class="sd">ent_1_dist = dist_mtrx_loaded[138]</span>
 
-<span class="c1"># find the maximum valid value</span>
-<span class="n">max_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">gr_2_dist</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="sd"># find the maximum valid value</span>
+<span class="sd">max_valid = np.ma.masked_invalid(ent_1_dist).max()</span>
 
-<span class="c1"># set the infinities to one more than the maximum valid values</span>
-<span class="n">gr_2_dist</span><span class="p">[</span><span class="n">gr_2_dist</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_valid</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="sd"># set the infinities to one more than the maximum valid values</span>
+<span class="sd">ent_1_dist[ent_1_dist == np.inf] = max_valid + 1&quot;&quot;&quot;</span>
 </code></pre></div>
 
 
 
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="15-construct-distance-to-2nd-entrance-lattice">1.5. Construct Distance to 2nd Entrance Lattice</h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># select the corresponding row in the matrix</span>
-<span class="n">gr_3_dist</span> <span class="o">=</span> <span class="n">dist_mtrx</span><span class="p">[</span><span class="mi">506</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># this cel is needed when we want to combine enntrance lattices. Here we define the second entrance</span>
+<span class="sd">&quot;&quot;&quot;# select the corresponding row in the matrix</span>
+<span class="sd">ent_2_dist = dist_mtrx_loaded[313]</span>
 
-<span class="c1"># find the maximum valid value</span>
-<span class="n">max_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">gr_3_dist</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="sd"># find the maximum valid value</span>
+<span class="sd">max_valid = np.ma.masked_invalid(ent_2_dist).max()</span>
 
-<span class="c1"># set the infinities to one more than the maximum valid values</span>
-<span class="n">gr_3_dist</span><span class="p">[</span><span class="n">gr_3_dist</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_valid</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="sd"># set the infinities to one more than the maximum valid values</span>
+<span class="sd">ent_2_dist[ent_2_dist == np.inf] = max_valid + 1&quot;&quot;&quot;</span>
 </code></pre></div>
 
 
 
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="16-combining-different-distance-fields">1.6. Combining different distance fields</h3>
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># finding the minimum distance between two entrance </span>
-<span class="c1"># fields (aka finding the closest entrance and replacing </span>
-<span class="c1"># the distance with the distance to that entrance)</span>
-<span class="n">gr_dist_temp1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">gr_1_dist</span><span class="p">,</span> <span class="n">gr_2_dist</span><span class="p">)</span>
-<span class="n">gr_dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">minimum</span><span class="p">(</span><span class="n">gr_dist_temp1</span><span class="p">,</span> <span class="n">gr_3_dist</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># here the entrance lattices are combined</span>
+<span class="sd">&quot;&quot;&quot;# finding the minimum distance between two entrance </span>
+<span class="sd"># fields (aka finding the closest entrance and replacing </span>
+<span class="sd"># the distance with the distance to that entrance)</span>
+<span class="sd">ent_dist_temp1 = np.minimum(ent_1_dist, ent_2_dist)</span>
+<span class="sd">ent_dist_temp2 = np.minimum(ent_dist_temp1, ent_3_dist)</span>
+<span class="sd">ent_dist_temp3 = np.minimum(ent_dist_temp2, ent_4_dist)</span>
+<span class="sd">ent_dist_temp4 = np.minimum(ent_dist_temp3, ent_5_dist)</span>
+<span class="sd">ent_dist = np.minimum(ent_dist_temp4, ent_6_dist)</span>
+
+<span class="sd"># mapping the values from (0, max) to (1, 0)</span>
+<span class="sd">ent_flat = 1 - ent_dist / np.max(ent_dist)</span>
+
+<span class="sd"># constructing the lattice</span>
+<span class="sd">ent_acc_lattice = tg.to_lattice(ent_flat.reshape(avail_lattice.shape), avail_lattice)</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="c1"># select the corresponding row in the matrix. This is done when only one entrance is used in the distance lattice</span>
+<span class="n">ent_dist</span> <span class="o">=</span> <span class="n">dist_mtrx_loaded</span><span class="p">[</span><span class="mi">5786</span><span class="p">]</span>
+
+<span class="c1"># find the maximum valid value</span>
+<span class="n">max_valid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">masked_invalid</span><span class="p">(</span><span class="n">ent_dist</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="c1"># set the infinities to one more than the maximum valid values</span>
+<span class="n">ent_dist</span><span class="p">[</span><span class="n">ent_dist</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="o">=</span> <span class="n">max_valid</span> <span class="o">+</span> <span class="mi">1</span>
 
 <span class="c1"># mapping the values from (0, max) to (1, 0)</span>
-<span class="n">gr_flat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">gr_dist</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">gr_dist</span><span class="p">)</span>
+<span class="n">ent_flat</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">ent_dist</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">ent_dist</span><span class="p">)</span>
 
 <span class="c1"># constructing the lattice</span>
-<span class="n">gr_acc_lattice</span> <span class="o">=</span> <span class="n">tg</span><span class="o">.</span><span class="n">to_lattice</span><span class="p">(</span><span class="n">gr_flat</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">avail_lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">avail_lattice</span><span class="p">)</span>
-</code></pre></div>
-
-
-
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-
-<div class="codehilite"><pre><span></span><code><span class="c1">### 1.5. Interpolation</span>
-</code></pre></div>
-
-
-
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">interpolate</span><span class="p">(</span><span class="n">info_lowres</span><span class="p">,</span> <span class="n">base_highres</span><span class="p">):</span>
-    <span class="c1"># line spaces</span>
-    <span class="n">x_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">info_lowres</span><span class="o">.</span><span class="n">minbound</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">info_lowres</span><span class="o">.</span><span class="n">maxbound</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">info_lowres</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">y_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">info_lowres</span><span class="o">.</span><span class="n">minbound</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">info_lowres</span><span class="o">.</span><span class="n">maxbound</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">info_lowres</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">z_space</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">info_lowres</span><span class="o">.</span><span class="n">minbound</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">info_lowres</span><span class="o">.</span><span class="n">maxbound</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">info_lowres</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
-
-    <span class="c1"># interpolation function</span>
-    <span class="n">interpolating_function</span> <span class="o">=</span> <span class="n">RegularGridInterpolator</span><span class="p">((</span><span class="n">x_space</span><span class="p">,</span> <span class="n">y_space</span><span class="p">,</span> <span class="n">z_space</span><span class="p">),</span> <span class="n">info_lowres</span><span class="p">,</span> <span class="n">bounds_error</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-
-    <span class="c1"># high_res lattice</span>
-    <span class="n">full_lattice</span> <span class="o">=</span> <span class="n">base_highres</span> <span class="o">+</span> <span class="mi">1</span>
-
-    <span class="c1"># sample points</span>
-    <span class="n">sample_points</span> <span class="o">=</span> <span class="n">full_lattice</span><span class="o">.</span><span class="n">centroids</span>
-
-    <span class="c1"># interpolation</span>
-    <span class="n">interpolated_values</span> <span class="o">=</span> <span class="n">interpolating_function</span><span class="p">(</span><span class="n">sample_points</span><span class="p">)</span>
-
-    <span class="c1"># lattice construction</span>
-    <span class="n">info_highres</span> <span class="o">=</span> <span class="n">tg</span><span class="o">.</span><span class="n">to_lattice</span><span class="p">(</span><span class="n">interpolated_values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">base_highres</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">base_highres</span><span class="p">)</span>
-
-    <span class="c1"># nulling the unavailable cells</span>
-    <span class="n">info_highres</span> <span class="o">*=</span> <span class="n">base_highres</span>
-
-    <span class="k">return</span> <span class="n">info_highres</span>
-</code></pre></div>
-
-
-
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-
-<div class="codehilite"><pre><span></span><code><span class="n">gr_acc_highres</span> <span class="o">=</span> <span class="n">interpolate</span><span class="p">(</span><span class="n">gr_acc_lattice</span><span class="p">,</span> <span class="n">avail_lattice_highres</span><span class="p">)</span>
+<span class="n">ent_acc_lattice</span> <span class="o">=</span> <span class="n">tg</span><span class="o">.</span><span class="n">to_lattice</span><span class="p">(</span><span class="n">ent_flat</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">avail_lattice</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">avail_lattice</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -1322,7 +1346,7 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="16-visualize-the-distance-lattice">1.6. Visualize the distance lattice</h3>
+<h3 id="17-visualize-the-distance-lattice">1.7. Visualize the distance lattice</h3>
 </div>
 </div>
 </div>
@@ -1337,7 +1361,7 @@
     <span class="k">return</span> <span class="n">pv_mesh</span>
 
 <span class="c1"># load the mesh from file</span>
-<span class="n">context_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;../data/extended_context.obj&#39;</span><span class="p">)</span>
+<span class="n">context_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;../data/immediate_context.obj&#39;</span><span class="p">)</span>
 <span class="n">context_mesh</span> <span class="o">=</span> <span class="n">tm</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">context_path</span><span class="p">)</span>
 
 <span class="c1"># initiating the plotter</span>
@@ -1347,17 +1371,17 @@
 <span class="n">grid</span> <span class="o">=</span> <span class="n">pv</span><span class="o">.</span><span class="n">UniformGrid</span><span class="p">()</span>
 
 <span class="c1"># Set the grid dimensions: shape because we want to inject our values</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">gr_acc_highres</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">ent_acc_lattice</span><span class="o">.</span><span class="n">shape</span>
 <span class="c1"># The bottom left corner of the data set</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">gr_acc_highres</span><span class="o">.</span><span class="n">minbound</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">origin</span> <span class="o">=</span> <span class="n">ent_acc_lattice</span><span class="o">.</span><span class="n">minbound</span>
 <span class="c1"># These are the cell sizes along each axis</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="n">gr_acc_highres</span><span class="o">.</span><span class="n">unit</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">spacing</span> <span class="o">=</span> <span class="n">ent_acc_lattice</span><span class="o">.</span><span class="n">unit</span>
 
 <span class="c1"># Add the data values to the cell data</span>
-<span class="n">grid</span><span class="o">.</span><span class="n">point_arrays</span><span class="p">[</span><span class="s2">&quot;Green Access&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">gr_acc_highres</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>  <span class="c1"># Flatten the Lattice</span>
+<span class="n">grid</span><span class="o">.</span><span class="n">point_arrays</span><span class="p">[</span><span class="s2">&quot;Entrance Access&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ent_acc_lattice</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">order</span><span class="o">=</span><span class="s2">&quot;F&quot;</span><span class="p">)</span>  <span class="c1"># Flatten the Lattice</span>
 
 <span class="c1"># adding the meshes</span>
-<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">tri_to_pv</span><span class="p">(</span><span class="n">context_mesh</span><span class="p">),</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;surface&#39;</span><span class="p">)</span>
+<span class="n">p</span><span class="o">.</span><span class="n">add_mesh</span><span class="p">(</span><span class="n">tri_to_pv</span><span class="p">(</span><span class="n">context_mesh</span><span class="p">),</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s1">&#39;wireframe&#39;</span><span class="p">)</span>
 
 <span class="c1"># adding the volume</span>
 <span class="n">opacity</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">,</span><span class="mf">0.6</span><span class="p">])</span> <span class="o">*</span> <span class="mf">0.6</span>
@@ -1369,30 +1393,6 @@
 
 
 
-</div>
-<div class="output_wrapper">
-<div class="output">
-<div class="output_area">
-<div id="c84b51af-a428-4a0a-b730-99165492b26b"></div>
-<div class="output_subarea output_widget_view ">
-<script type="text/javascript">
-var element = $('#c84b51af-a428-4a0a-b730-99165492b26b');
-</script>
-<script type="application/vnd.jupyter.widget-view+json">
-{"model_id": "808b59ec89504b3f9bece04c7d5a837c", "version_major": 2, "version_minor": 0}
-</script>
-</div>
-</div>
-<div class="output_area">
-<div class="output_text output_subarea output_execute_result">
-<pre>
-<code>[(1437.4594008982308, 1436.248814398231, 1449.288430048231),
- (18.23971549999999, 17.02912900000001, 30.06874465),
- (0.0, 0.0, 1.0)]</code>
-</pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -1406,10 +1406,9 @@ var element = $('#c84b51af-a428-4a0a-b730-99165492b26b');
 <div class="input">
 
 
-<div class="codehilite"><pre><span></span><code><span class="c1"># save the sun access latice to csv</span>
-
-<span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;../data/public_greenery.csv&#39;</span><span class="p">)</span>
-<span class="n">ent_acc_highres</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># save the entrance access latice to csv</span>
+<span class="n">csv_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">relpath</span><span class="p">(</span><span class="s1">&#39;../data/ent2_access.csv&#39;</span><span class="p">)</span>
+<span class="n">ent_acc_lattice</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">csv_path</span><span class="p">)</span>
 </code></pre></div>
 
 
@@ -1428,11 +1427,11 @@ var element = $('#c84b51af-a428-4a0a-b730-99165492b26b');
 
 
 <div class="codehilite"><pre><span></span><code><span class="n">__author__</span> <span class="o">=</span> <span class="s2">&quot;Shervin Azadi and Pirouz Nourian&quot;</span>
-<span class="n">__changes_made_by__</span> <span class="o">=</span> <span class="s2">&quot;Frank Vahstal&quot;</span>
+<span class="n">__changes_made_by__</span> <span class="s2">&quot;Xam Adan&quot;</span>
 <span class="n">__license__</span> <span class="o">=</span> <span class="s2">&quot;MIT&quot;</span>
 <span class="n">__version__</span> <span class="o">=</span> <span class="s2">&quot;1.0&quot;</span>
 <span class="n">__url__</span> <span class="o">=</span> <span class="s2">&quot;https://github.com/frankvahstal/spatial_computing_workshops&quot;</span>
-<span class="n">__summary__</span> <span class="o">=</span> <span class="s2">&quot;Spatial Computing Design Studio Workshop on Interpolation of Distance Fields for Generative Spatial Relations&quot;</span>
+<span class="n">__summary__</span> <span class="o">=</span> <span class="s2">&quot;Spatial Computing Design Studio Workshop on MCDA and Path Finding for Generative Spatial Relations&quot;</span>
 </code></pre></div>
 
 
@@ -1457,7 +1456,7 @@ var element = $('#c84b51af-a428-4a0a-b730-99165492b26b');
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../entrance_access/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../sun/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1466,19 +1465,19 @@ var element = $('#c84b51af-a428-4a0a-b730-99165492b26b');
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Public entrance analysis
+                Sun access analysis
               </div>
             </div>
           </a>
         
         
-          <a href="../noise%20field/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../Green/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Noise analysis
+                Green access analysis
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
